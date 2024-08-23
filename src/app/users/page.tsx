@@ -1,11 +1,10 @@
 import Link from "next/link";
 import prisma from '@/lib/db'
-import {addUser, deleteUser} from "@/actions/actions";
+import {addUser} from "@/actions/actions";
 
 export default async function Users() {
 
     const users = await prisma.user.findMany()
-    console.log(users)
     return (
         <main className={'flex flex-col mt-5 justify-center items-center gap-5'}>
             <Link className={'underline'} href={'/'}>Go to home</Link>
