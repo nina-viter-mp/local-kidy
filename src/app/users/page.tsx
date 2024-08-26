@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { addUser } from '@/actions/actions';
 import Typography from '@mui/material/Typography';
-import UsersTable from '@/app/users/UsersTable';
+import UsersTable from '@/components/users/UsersTable';
 import { revalidatePath } from 'next/cache';
 
 export default async function Users() {

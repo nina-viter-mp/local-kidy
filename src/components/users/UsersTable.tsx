@@ -11,8 +11,15 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { format } from 'date-fns';
+import { Prisma } from '@prisma/client';
 
-export default function UsersTable({ users, deleteUser }: any) {
+export default function UsersTable({
+  users,
+  deleteUser,
+}: {
+  users: Prisma.UserCreateInput[];
+  deleteUser: (id: number) => void;
+}) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -25,15 +32,15 @@ export default function UsersTable({ users, deleteUser }: any) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((row) => (
+          {users.map((row: Prisma.UserUncheckedCreateInput) => (
             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell>{row.email}</TableCell>
-              <TableCell>{format(row.createdAt, 'dd-MM-yyyy HH:mm')}</TableCell>
+              <TableCell>{format(row.createdAt!, 'dd-MM-yyyy HH:mm')}</TableCell>
               <TableCell>
-                <IconButton onClick={() => deleteUser(row.id)}>
+                <IconButton onClick={() => deleteUser(row.id!)}>
                   <DeleteForeverIcon></DeleteForeverIcon>
                 </IconButton>
               </TableCell>
