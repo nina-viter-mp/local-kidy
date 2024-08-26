@@ -9,20 +9,16 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ChildCareIcon from '@mui/icons-material/ChildCare';
 import LoginIcon from '@mui/icons-material/Login';
 import Link from 'next/link';
 
 const pages = ['About', 'Users'];
-const settings = ['Profile', 'Account', 'Logout'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -125,7 +121,9 @@ function Header() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <LoginIcon></LoginIcon>
+            <IconButton size="large" aria-label="login" color="inherit">
+              <LoginIcon></LoginIcon>
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
