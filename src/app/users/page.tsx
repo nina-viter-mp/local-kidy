@@ -1,28 +1,26 @@
-import Link from 'next/link';
 import prisma from '@/lib/db';
 import { addUser } from '@/actions/actions';
+import Typography from '@mui/material/Typography';
+import UsersTable from '@/app/users/UsersTable';
+import { revalidatePath } from 'next/cache';
 
 export default async function Users() {
   const users = await prisma.user.findMany();
-  return (
-    <main className={'mt-5 flex flex-col items-center justify-center gap-5'}>
-      <Link className={'underline'} href={'/'}>
-        Go to home
-      </Link>
+  const usersCount = await prisma.user.count();
 
-      <h1> All Users</h1>
-      <ul>
-        <hr />
-        {users.map((user) => (
-          <li key={user.id}>
-            <div className="flex items-center justify-between gap-3 py-1">
-              <div>{user.name}</div>
-              <div>{user.email}</div>
-            </div>
-            <hr />
-          </li>
-        ))}
-      </ul>
+  const deleteUser = async (id: number) => {
+    'use server';
+    await prisma.user.delete({
+      where: {
+        id: id,
+      },
+    });
+    revalidatePath('users');
+  };
+  return (
+    <main className={'mt-5 flex flex-col items-center justify-center gap-5 px-7'}>
+      <Typography variant="h6">All Users ({usersCount})</Typography>
+      <UsersTable users={users} deleteUser={deleteUser}></UsersTable>
       <form action={addUser} className="flex flex-col gap-2">
         <input
           type="text"
