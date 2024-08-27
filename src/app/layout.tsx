@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/common/Header';
+import MuiLocalizationProvider from '@/lib/mui/MuiLocalizationProvider';
 
 const roboto = Roboto({ weight: ['300', '400', '700', '500'], subsets: ['latin'] });
 
@@ -20,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         <AppRouterCacheProvider>
-          <Header></Header>
-          {children}
+          <MuiLocalizationProvider>
+            <Header></Header>
+            {children}
+          </MuiLocalizationProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
