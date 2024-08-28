@@ -30,10 +30,10 @@ export default function UsersTable({
             <TableCell>Phone</TableCell>
             <TableCell>Nr. of children</TableCell>
             <TableCell>Age of children</TableCell>
-            <TableCell>Date of creation</TableCell>
             <TableCell>Start date of care</TableCell>
             <TableCell>Frequency of care</TableCell>
             <TableCell>Total hours of care</TableCell>
+            <TableCell>Date of creation</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
