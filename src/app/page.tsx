@@ -26,7 +26,7 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 export default function Home() {
-  const [hostingPhotos, setHostingPhotos] = useState([]);
+  const [hostingPhotos, setHostingPhotos] = useState<string[]>([]);
   return (
     <main className="mb-11 mt-7 flex w-full flex-col justify-center">
       <Container maxWidth="md">
@@ -147,7 +147,9 @@ export default function Home() {
                 onChange={(event) =>
                   setHostingPhotos((photos) => [
                     ...photos,
-                    ...Array.from(event.target.files).map((file) => URL.createObjectURL(file)),
+                    ...Array.from(event.target.files || []).map((file) =>
+                      URL.createObjectURL(file),
+                    ),
                   ])
                 }
                 multiple
