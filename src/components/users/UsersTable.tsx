@@ -27,17 +27,32 @@ export default function UsersTable({
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Nr. of children</TableCell>
+            <TableCell>Age of children</TableCell>
             <TableCell>Date of creation</TableCell>
+            <TableCell>Start date of care</TableCell>
+            <TableCell>Frequency of care</TableCell>
+            <TableCell>Total hours of care</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((row: Prisma.UserUncheckedCreateInput) => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow
+              key={row.first_name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.first_name} {row.last_name}
               </TableCell>
               <TableCell>{row.email}</TableCell>
+              <TableCell>{row.phone}</TableCell>
+              <TableCell>{row.number_of_children}</TableCell>
+              <TableCell>{row.age_of_children}</TableCell>
+              <TableCell>{format(row.start_date_of_care!, 'dd-MM-yyyy')}</TableCell>
+              <TableCell>{row.frequency}</TableCell>
+              <TableCell>{row.total_hours}</TableCell>
               <TableCell>{format(row.createdAt!, 'dd-MM-yyyy HH:mm')}</TableCell>
               <TableCell>
                 <IconButton onClick={() => deleteUser(row.id!)}>

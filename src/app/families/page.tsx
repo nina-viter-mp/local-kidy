@@ -18,7 +18,7 @@ export default async function Users() {
   };
   return (
     <main className={'mt-5 flex flex-col items-center justify-center gap-5 px-7'}>
-      <Typography variant="h6">All Users ({usersCount})</Typography>
+      <Typography variant="h6">All Families ({usersCount})</Typography>
       <UsersTable users={users} deleteUser={deleteUser}></UsersTable>
     </main>
   );

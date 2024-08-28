@@ -11,7 +11,6 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import Image from 'next/image';
-import { Delete } from '@mui/icons-material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const VisuallyHiddenInput = styled('input')({
@@ -32,7 +31,7 @@ export default function Home() {
     <main className="mb-11 mt-7 flex w-full flex-col justify-center">
       <Container maxWidth="md">
         <Typography variant="h6" sx={{ marginBottom: '16px' }}>
-          Help us tailor your results to find nannies:
+          Help us tailor your results:
         </Typography>
         <form action={addUser} className="flex flex-col gap-3">
           <Divider sx={{ marginBottom: '4px' }} textAlign="left">
@@ -40,6 +39,7 @@ export default function Home() {
           </Divider>
           <div className="flex gap-3">
             <TextField
+              required
               fullWidth
               type="text"
               label="First Name"
@@ -47,6 +47,7 @@ export default function Home() {
               size="small"
             ></TextField>
             <TextField
+              required
               fullWidth
               type="text"
               label="Last Name"
@@ -54,20 +55,36 @@ export default function Home() {
               size="small"
             ></TextField>
           </div>
-          <TextField fullWidth type="email" label="Email" name="email" size="small"></TextField>
+          <TextField
+            required
+            fullWidth
+            type="email"
+            label="Email"
+            name="email"
+            size="small"
+          ></TextField>
           <TextField
             fullWidth
+            required
             type="text"
             label="Phone Number"
             name="phone"
             size="small"
           ></TextField>
-          <TextField fullWidth type="text" label="Address" name="address" size="small"></TextField>
+          <TextField
+            required
+            fullWidth
+            type="text"
+            label="Address"
+            name="address"
+            size="small"
+          ></TextField>
           <Divider sx={{ marginBottom: '4px' }} textAlign="left">
             Care Details
           </Divider>
           <div className="flex gap-3">
             <TextField
+              required
               sx={{ width: '200px' }}
               type="number"
               label="Nr. of children"
@@ -76,6 +93,7 @@ export default function Home() {
               size="small"
             ></TextField>
             <TextField
+              required
               fullWidth
               label="Age of children"
               name="age_of_children"
@@ -84,21 +102,31 @@ export default function Home() {
           </div>
           <DatePicker
             label="Start date of care"
+            name="start_date_of_care"
             slotProps={{
               textField: {
                 size: 'small',
+                required: true,
               },
             }}
           />
-          <TextField fullWidth label="Frequency of care" name="frequency" size="small" select>
+          <TextField
+            required
+            fullWidth
+            label="Frequency of care"
+            name="frequency"
+            size="small"
+            select
+          >
             <MenuItem value="everyday">Everyday</MenuItem>
             <MenuItem value="one_time">1 times per week</MenuItem>
-            <MenuItem value="two_time">2 times per week</MenuItem>
-            <MenuItem value="three_time">3 times per week</MenuItem>
-            <MenuItem value="everyday">4 times per week</MenuItem>
-            <MenuItem value="everyday">4 times per week</MenuItem>
+            <MenuItem value="two_times">2 times per week</MenuItem>
+            <MenuItem value="three_times">3 times per week</MenuItem>
+            <MenuItem value="four_times">4 times per week</MenuItem>
+            <MenuItem value="five_times">5 times per week</MenuItem>
           </TextField>
           <TextField
+            required
             type="number"
             label="Total hours of care"
             inputProps={{ min: 1 }}
@@ -112,13 +140,7 @@ export default function Home() {
             Upload of photos of the home (play area, rest area, dining room, bathroom)
           </Typography>
           <div>
-            <Button
-              component="label"
-              role={undefined}
-              variant="text"
-              tabIndex={-1}
-              startIcon={<CloudUploadIcon />}
-            >
+            <Button component="label" variant="text" tabIndex={-1} startIcon={<CloudUploadIcon />}>
               Upload files
               <VisuallyHiddenInput
                 type="file"
@@ -132,7 +154,7 @@ export default function Home() {
               />
             </Button>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             {hostingPhotos.map((photo) => {
               return (
                 <div key={photo} className="relative">
@@ -152,7 +174,7 @@ export default function Home() {
           </div>
           <div className="mt-11 flex justify-center">
             <Button type="submit" variant="contained">
-              See nannies near me
+              {`Save family's details`}
             </Button>
           </div>
         </form>

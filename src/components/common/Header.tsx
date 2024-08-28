@@ -15,7 +15,7 @@ import ChildCareIcon from '@mui/icons-material/ChildCare';
 import LoginIcon from '@mui/icons-material/Login';
 import Link from 'next/link';
 
-const pages = ['About', 'Users'];
+const pages = ['About', 'Families'];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
