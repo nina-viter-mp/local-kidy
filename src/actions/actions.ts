@@ -20,5 +20,5 @@ export async function addUser(formData: FormData) {
     },
   });
 
-  redirect('/users');
+  redirect('/families');
 }
